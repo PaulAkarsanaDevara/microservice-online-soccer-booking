@@ -1,5 +1,12 @@
 package config
 
+import (
+	"os"
+	"user-service/common/utils"
+
+	"github.com/sirupsen/logrus"
+)
+
 var Config AppConfig
 
 type AppConfig struct {
@@ -27,6 +34,12 @@ type Database struct {
 }
 
 func Init() {
-	// err :=
-	// TODO ADD INIT CONFIG
+	err := utils.BindFromJSON(&Config, "config.json", "")
+	if err != nil {
+		logrus.Errorf("failed to bind config: %v", err)
+		err = utils.BindFromConsul(&Config, os.Getenv("CONSUL_HTTP_URL"), os.Getenv("CONSUL_HTTP_KEY"))
+		if err != nil {
+			panic(err)
+		}
+	}
 }
