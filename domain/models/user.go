@@ -19,13 +19,3 @@ type User struct {
 	UpdatedAt   *time.Time
 	Role        Role `gorm:"foreignKey:role_id;references:id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 }
-
-type UpdateUserRequest struct {
-	Name            string `json:"name:" validate:"required"`
-	Username        string `json:"username:" validate:"required"`
-	Email           string `json:"email" validate:"required"`
-	PhoneNumber     string `json:"phoneNumber" validate:"required"`
-	Password        string `json:"password,omitempty"`
-	ConfirmPassword string `json:"confirmPassword,omitempty"`
-	RoleID          uint
-}

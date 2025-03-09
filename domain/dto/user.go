@@ -9,3 +9,13 @@ type UserResponse struct {
 	Role        string    `json:"role"`
 	PhoneNumber string    `json:"phoneNumber"`
 }
+
+type UpdateUserRequest struct {
+	Name            string `json:"name:" validate:"required"`
+	Username        string `json:"username:" validate:"required"`
+	Email           string `json:"email" validate:"required"`
+	PhoneNumber     string `json:"phoneNumber" validate:"required"`
+	Password        string `json:"password,omitempty"`
+	ConfirmPassword string `json:"confirmPassword,omitempty"`
+	RoleID          uint
+}
