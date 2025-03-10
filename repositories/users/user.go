@@ -47,7 +47,7 @@ func (r *UserRepository) Update(ctx context.Context, req *dto.UpdateUserRequest,
 	user := models.User{
 		Name:        req.Name,
 		Username:    req.Username,
-		Password:    req.Password,
+		Password:    *req.Password,
 		PhoneNumber: req.PhoneNumber,
 		Email:       req.Email,
 	}
@@ -58,7 +58,6 @@ func (r *UserRepository) Update(ctx context.Context, req *dto.UpdateUserRequest,
 
 	return &user, nil
 }
-
 func (r *UserRepository) FindByUsername(ctx context.Context, username string) (*models.User, error) {
 	var user models.User
 
